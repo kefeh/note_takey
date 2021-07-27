@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:note_takey/models/colors_data.dart';
 
 class SearchForm extends StatelessWidget {
   const SearchForm({
     Key? key,
-    required this.searchColor,
   }) : super(key: key);
-
-  final Color searchColor;
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +13,19 @@ class SearchForm extends StatelessWidget {
         height: 40,
         child: TextFormField(
           textAlignVertical: TextAlignVertical.center,
-          decoration: InputDecoration(
-            fillColor: searchColor,
+          decoration: const InputDecoration(
+            fillColor: ColorsData.searchColor,
             filled: true,
-            prefixIcon: const Icon(
+            prefixIcon: Icon(
               Icons.search,
               size: 30,
             ),
             hintText: "Search",
-            hintStyle: const TextStyle(
+            hintStyle: TextStyle(
               fontSize: 12,
               textBaseline: TextBaseline.alphabetic,
             ),
-            border: const OutlineInputBorder(
+            border: OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.all(
                 Radius.circular(10),

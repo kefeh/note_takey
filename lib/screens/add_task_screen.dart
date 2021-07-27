@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:note_takey/models/colors_data.dart';
 import 'package:note_takey/models/task.dart';
+import 'package:note_takey/models/task_data_change_notifier.dart';
 import 'package:note_takey/widgets/staggered_card.dart';
+import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({
     Key? key,
-    required this.addListItems,
   }) : super(key: key);
-
-  final Function addListItems;
 
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
@@ -22,21 +22,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   String date = DateFormat.yMMMEd().format(DateTime.now());
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    const Color accentColor = Color(0xFFCFECFE);
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
           title: const Header(
             text: "Add Notes",
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: ColorsData.mainColor,
           shadowColor: Colors.white12,
           iconTheme: const IconThemeData(
             color: Colors.black, //change your color here
@@ -45,17 +38,19 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            widget.addListItems(
+            Provider.of<TaskData>(context, listen: false).addTaskItems(
               Task(
                 header: header,
                 body: body,
                 createdAt: date,
               ),
             );
+            Navigator.pop(context);
           },
           child: const Icon(Icons.check),
+          backgroundColor: ColorsData.accentColorSecondary,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: ColorsData.mainColor,
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
@@ -71,7 +66,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   maxLengthEnforcement:
                       MaxLengthEnforcement.truncateAfterCompositionEnds,
                   decoration: InputDecoration(
-                    fillColor: accentColor,
+                    fillColor: ColorsData.accentColor,
                     filled: true,
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide.none,
@@ -103,7 +98,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       height: 1.8,
                     ),
                     decoration: InputDecoration(
-                      fillColor: accentColor,
+                      fillColor: ColorsData.accentColor,
                       filled: true,
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide.none,
