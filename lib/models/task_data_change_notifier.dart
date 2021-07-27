@@ -48,4 +48,9 @@ class TaskData extends ChangeNotifier {
     _taskItems.add(value);
     notifyListeners();
   }
+
+  void removeTaskItem(Task value) {
+    _taskItems.remove(value);
+    notifyListeners();
+  }
 }
