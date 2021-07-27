@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:note_takey/models/task.dart';
 
 class CardItem extends StatelessWidget {
-  final String header;
-  final String body;
-  final String createdAt;
+  final Task task;
   const CardItem({
     Key? key,
-    required this.header,
-    required this.body,
-    required this.createdAt,
+    required this.task,
   }) : super(key: key);
 
   @override
@@ -23,26 +20,26 @@ class CardItem extends StatelessWidget {
         padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Padding(
-              padding: EdgeInsets.only(bottom: 8.0),
+              padding: const EdgeInsets.only(bottom: 8.0),
               child: Header(
-                text: 'Header',
+                text: task.header,
               ),
             ),
             Text(
-              "We will create an imageList URL in a list and define it on a staggered gridview.",
-              style: TextStyle(
+              task.body,
+              style: const TextStyle(
                 fontSize: 11,
                 fontWeight: weight500,
                 height: 1.8,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 8.0),
               child: Text(
-                "20th May",
-                style: TextStyle(
+                task.createdAt,
+                style: const TextStyle(
                   fontSize: 9,
                   fontWeight: weight500,
                   height: 1.5,

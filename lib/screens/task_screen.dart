@@ -1,14 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:note_takey/models/task.dart';
 import 'package:note_takey/screens/add_task_screen.dart';
 import 'package:note_takey/widgets/search_form.dart';
 import 'package:note_takey/widgets/staggered_grid.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
   const TasksScreen({Key? key}) : super(key: key);
 
-  Widget buildBottomModal(BuildContext context) {
-    FocusScope.of(context).requestFocus(FocusNode());
-    return Container();
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> taskItems = [
+    Task(
+      header: "Header",
+      body:
+          "We are definitely going to start from somewhere and it will be a series that will last us a couple of weeks. We will start with what a widget is and explore through other complex concepts and techniques.",
+      createdAt: "20th May",
+    ),
+    Task(
+      header: "Header",
+      body:
+          "State: state defines the condition of a system or entity at a specific time (or under specific conditions).",
+      createdAt: "20th May",
+    ),
+    Task(
+      header: "Header",
+      body: "Yeah that's obvious, you may say but is it?",
+      createdAt: "20th May",
+    ),
+    Task(
+      header: "Header",
+      body:
+          "In life, you may ask a very trivial question as, what's the state of water at room temperature? It's liquid, that's right, but does that mean that water is stateful? Yes sure, due to some external conditions, water is able to change its form or state.",
+      createdAt: "20th May",
+    ),
+    Task(
+      header: "Header",
+      body: "We are definitely going to start.",
+      createdAt: "20th May",
+    ),
+  ];
+
+  void modifyListItems(Task taskItem) {
+    setState(() {
+      taskItems.add(taskItem);
+    });
   }
 
   @override
@@ -18,6 +56,7 @@ class TasksScreen extends StatelessWidget {
     const Color accentColorSecondary = Color(0xFF2CC2EC);
     const Color textColor = Color(0xff0f1212);
     const Color searchColor = Color(0xFFF5F6FD);
+
     return Scaffold(
       backgroundColor: mainColor,
       floatingActionButton: FloatingActionButton(
@@ -25,7 +64,9 @@ class TasksScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const AddTaskScreen(),
+              builder: (context) => AddTaskScreen(
+                addListItems: modifyListItems,
+              ),
             ),
           )
         },
@@ -79,9 +120,12 @@ class TasksScreen extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const Expanded(
+              Expanded(
                 child: SizedBox(
-                  child: StGridView(accentColor: accentColor),
+                  child: StGridView(
+                    accentColor: accentColor,
+                    taskItems: taskItems,
+                  ),
                 ),
               ),
             ],
