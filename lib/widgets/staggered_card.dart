@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:note_takey/models/colors_data.dart';
 import 'package:note_takey/models/task.dart';
 import 'package:note_takey/models/task_data_change_notifier.dart';
+import 'package:note_takey/screens/add_task_screen.dart';
 import 'package:provider/provider.dart';
 
 class CardItem extends StatelessWidget {
@@ -11,40 +12,56 @@ class CardItem extends StatelessWidget {
     required this.task,
   }) : super(key: key);
 
+  longPress(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      backgroundColor: const Color(0xFF757575),
+      builder: (BuildContext context) {
+        return Container(
+          height: 60,
+          decoration: const BoxDecoration(
+            color: ColorsData.accentColor,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20.0),
+              topLeft: Radius.circular(20.0),
+            ),
+          ),
+          child: TextButton(
+            onPressed: () {
+              Provider.of<TaskData>(context, listen: false)
+                  .removeTaskItem(task);
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.delete_forever,
+              color: Colors.redAccent,
+              size: 30.0,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  tap() {}
+
   @override
   Widget build(BuildContext context) {
     const FontWeight weight500 = FontWeight.w500;
 
     return GestureDetector(
-      onLongPress: () {
-        showModalBottomSheet(
-          context: context,
-          backgroundColor: const Color(0xFF757575),
-          builder: (BuildContext context) {
-            return Container(
-              height: 60,
-              decoration: const BoxDecoration(
-                color: ColorsData.accentColor,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20.0),
-                  topLeft: Radius.circular(20.0),
-                ),
-              ),
-              child: TextButton(
-                onPressed: () {
-                  Provider.of<TaskData>(context, listen: false)
-                      .removeTaskItem(task);
-                  Navigator.pop(context);
-                },
-                child: const Icon(
-                  Icons.delete_forever,
-                  color: Colors.redAccent,
-                  size: 30.0,
-                ),
-              ),
-            );
-          },
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AddTaskScreen(
+              task: task,
+            ),
+          ),
         );
+      },
+      onLongPress: () {
+        longPress(context);
       },
       child: Container(
         decoration: BoxDecoration(

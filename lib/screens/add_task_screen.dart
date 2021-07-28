@@ -8,8 +8,10 @@ import 'package:note_takey/widgets/staggered_card.dart';
 import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
+  final Task? task;
   const AddTaskScreen({
     Key? key,
+    this.task,
   }) : super(key: key);
 
   @override
@@ -17,9 +19,24 @@ class AddTaskScreen extends StatefulWidget {
 }
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
-  String header = '';
-  String body = '';
   String date = DateFormat.yMMMEd().format(DateTime.now());
+
+  late final TextEditingController headerController;
+  late final TextEditingController bodyController;
+
+  @override
+  void initState() {
+    headerController = TextEditingController(text: widget.task?.header);
+    bodyController = TextEditingController(text: widget.task?.body);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    headerController.dispose();
+    bodyController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +57,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           onPressed: () {
             Provider.of<TaskData>(context, listen: false).addTaskItems(
               Task(
-                header: header,
-                body: body,
+                header: headerController.text,
+                body: bodyController.text,
                 createdAt: date,
               ),
             );
@@ -58,9 +75,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               SizedBox(
                 height: 60,
                 child: TextField(
-                  onChanged: (value) => {
-                    setState(() => {header = value})
-                  },
                   textAlignVertical: TextAlignVertical.bottom,
                   maxLength: 40,
                   maxLengthEnforcement:
@@ -78,6 +92,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     ),
                     hintText: 'Title',
                   ),
+                  controller: headerController,
                 ),
               ),
               const SizedBox(
@@ -87,9 +102,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 child: Scrollbar(
                   radius: const Radius.circular(20),
                   child: TextField(
-                    onChanged: (value) => {
-                      setState(() => {body = value})
-                    },
                     textAlignVertical: TextAlignVertical.top,
                     expands: true,
                     maxLines: null,
@@ -110,6 +122,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       ),
                       hintText: 'Note',
                     ),
+                    controller: bodyController,
                   ),
                 ),
               ),
