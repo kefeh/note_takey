@@ -30,7 +30,8 @@ class GoogleAuthenticator {
       final storedCredentials = await _storedCredentials.read();
       if (storedCredentials != null) {
         if (storedCredentials.isExpired && storedCredentials.canRefresh) {
-          //TODO: referesh the token;
+          final failureOrCredentials = await refresh(storedCredentials);
+          failureOrCredentials.fold((l) => null, (r) => r);
         }
         return storedCredentials;
       }
@@ -94,6 +95,24 @@ class GoogleAuthenticator {
       return right(unit);
     } on PlatformException {
       return left(const AuthFailure.storage());
+    }
+  }
+
+  Future<Either<AuthFailure, Credentials>> refresh(
+      Credentials credentials) async {
+    try {
+      final refreshCredentials = await credentials.refresh(
+        identifier: clientId,
+        secret: clientSecrete,
+      );
+      await _storedCredentials.save(refreshCredentials);
+      return right(refreshCredentials);
+    } on PlatformException {
+      return left(const AuthFailure.storage());
+    } on AuthorizationException catch (e) {
+      return left(AuthFailure.server("${e.error}: ${e.description}"));
+    } on FormatException {
+      return left(const AuthFailure.server());
     }
   }
 }
