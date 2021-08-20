@@ -30,10 +30,12 @@ dependencies:
 dev_dependencies:
   auto_route_generator: ^2.3.0
   build_runner: ^2.1.1
+  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
   freezed: ^0.14.5
   lint: ^1.7.2
+
 dependency_overrides:
   flutter_riverpod:
     git:
