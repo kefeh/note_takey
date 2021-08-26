@@ -1,7 +1,8 @@
 import 'dart:collection';
 
 import 'package:flutter/foundation.dart';
-import 'package:note_takey/models/task.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:note_takey/tasks/application/task.dart';
 
 class TaskData extends ChangeNotifier {
   List<Task> _taskItems = [
@@ -54,3 +55,5 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+final taskDataProvider = Provider((ref) => TaskData());

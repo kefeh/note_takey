@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:note_takey/models/colors_data.dart';
-import 'package:note_takey/models/task.dart';
-import 'package:note_takey/models/task_data_change_notifier.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:note_takey/screens/add_task_screen.dart';
-import 'package:provider/provider.dart';
+import 'package:note_takey/tasks/application/colors_data.dart';
+import 'package:note_takey/tasks/application/task.dart';
+import 'package:note_takey/tasks/application/task_data_change_notifier.dart';
 
 class CardItem extends StatelessWidget {
   final Task task;
@@ -28,8 +28,7 @@ class CardItem extends StatelessWidget {
           ),
           child: TextButton(
             onPressed: () {
-              Provider.of<TaskData>(context, listen: false)
-                  .removeTaskItem(task);
+              context.read(taskDataProvider).removeTaskItem(task);
               Navigator.pop(context);
             },
             child: const Icon(

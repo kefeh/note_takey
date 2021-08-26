@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:note_takey/models/colors_data.dart';
-import 'package:note_takey/models/task.dart';
-import 'package:note_takey/models/task_data_change_notifier.dart';
+import 'package:note_takey/tasks/application/colors_data.dart';
+import 'package:note_takey/tasks/application/task.dart';
+import 'package:note_takey/tasks/application/task_data_change_notifier.dart';
 import 'package:note_takey/widgets/staggered_card.dart';
-import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
   final Task? task;
@@ -55,13 +55,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Provider.of<TaskData>(context, listen: false).addTaskItems(
-              Task(
-                header: headerController.text,
-                body: bodyController.text,
-                createdAt: date,
-              ),
-            );
+            context.read(taskDataProvider).addTaskItems(
+                  Task(
+                    header: headerController.text,
+                    body: bodyController.text,
+                    createdAt: date,
+                  ),
+                );
             Navigator.pop(context);
           },
           child: const Icon(Icons.check),

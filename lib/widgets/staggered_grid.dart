@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:note_takey/models/task_data_change_notifier.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:note_takey/tasks/application/task_data_change_notifier.dart';
 import 'package:note_takey/widgets/staggered_card.dart';
-import 'package:provider/provider.dart';
 
 class StGridView extends StatelessWidget {
   const StGridView({
@@ -11,8 +11,9 @@ class StGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TaskData>(
-      builder: (BuildContext context, taskData, Widget? child) {
+    return Consumer(
+      builder: (BuildContext context, ref, Widget? child) {
+        final taskData = ref.watch(taskDataProvider);
         return StaggeredGridView.countBuilder(
           crossAxisCount: 2,
           crossAxisSpacing: 22,

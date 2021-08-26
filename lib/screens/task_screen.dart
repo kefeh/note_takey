@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:note_takey/models/colors_data.dart';
 import 'package:note_takey/screens/add_task_screen.dart';
+import 'package:note_takey/tasks/application/colors_data.dart';
 import 'package:note_takey/widgets/search_form.dart';
 import 'package:note_takey/widgets/staggered_grid.dart';
 
