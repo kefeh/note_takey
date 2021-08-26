@@ -23,7 +23,7 @@ class _$AuthFailureTearOff {
     );
   }
 
-  _Storage Storage() {
+  _Storage storage() {
     return const _Storage();
   }
 }
@@ -36,38 +36,38 @@ mixin _$AuthFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) server,
-    required TResult Function() Storage,
+    required TResult Function() storage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? Storage,
+    TResult Function()? storage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? Storage,
+    TResult Function()? storage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Server value) server,
-    required TResult Function(_Storage value) Storage,
+    required TResult Function(_Storage value) storage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_Storage value)? Storage,
+    TResult Function(_Storage value)? storage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_Storage value)? Storage,
+    TResult Function(_Storage value)? storage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -152,7 +152,7 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) server,
-    required TResult Function() Storage,
+    required TResult Function() storage,
   }) {
     return server(message);
   }
@@ -161,7 +161,7 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? Storage,
+    TResult Function()? storage,
   }) {
     return server?.call(message);
   }
@@ -170,7 +170,7 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? Storage,
+    TResult Function()? storage,
     required TResult orElse(),
   }) {
     if (server != null) {
@@ -183,7 +183,7 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Server value) server,
-    required TResult Function(_Storage value) Storage,
+    required TResult Function(_Storage value) storage,
   }) {
     return server(this);
   }
@@ -192,7 +192,7 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_Storage value)? Storage,
+    TResult Function(_Storage value)? storage,
   }) {
     return server?.call(this);
   }
@@ -201,7 +201,7 @@ class _$_Server extends _Server {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_Storage value)? Storage,
+    TResult Function(_Storage value)? storage,
     required TResult orElse(),
   }) {
     if (server != null) {
@@ -243,7 +243,7 @@ class _$_Storage extends _Storage {
 
   @override
   String toString() {
-    return 'AuthFailure.Storage()';
+    return 'AuthFailure.storage()';
   }
 
   @override
@@ -258,29 +258,29 @@ class _$_Storage extends _Storage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String? message) server,
-    required TResult Function() Storage,
+    required TResult Function() storage,
   }) {
-    return Storage();
+    return storage();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? Storage,
+    TResult Function()? storage,
   }) {
-    return Storage?.call();
+    return storage?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String? message)? server,
-    TResult Function()? Storage,
+    TResult Function()? storage,
     required TResult orElse(),
   }) {
-    if (Storage != null) {
-      return Storage();
+    if (storage != null) {
+      return storage();
     }
     return orElse();
   }
@@ -289,29 +289,29 @@ class _$_Storage extends _Storage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Server value) server,
-    required TResult Function(_Storage value) Storage,
+    required TResult Function(_Storage value) storage,
   }) {
-    return Storage(this);
+    return storage(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_Storage value)? Storage,
+    TResult Function(_Storage value)? storage,
   }) {
-    return Storage?.call(this);
+    return storage?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Server value)? server,
-    TResult Function(_Storage value)? Storage,
+    TResult Function(_Storage value)? storage,
     required TResult orElse(),
   }) {
-    if (Storage != null) {
-      return Storage(this);
+    if (storage != null) {
+      return storage(this);
     }
     return orElse();
   }

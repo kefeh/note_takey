@@ -73,8 +73,7 @@ class GoogleAuthenticator {
     }
   }
 
-  Future<Either<AuthFailure, Unit>> signout(
-      AuthorizationCodeGrant grant) async {
+  Future<Either<AuthFailure, Unit>> signout() async {
     final token = await _storedCredentials
         .read()
         .then((credentials) => credentials?.accessToken);
